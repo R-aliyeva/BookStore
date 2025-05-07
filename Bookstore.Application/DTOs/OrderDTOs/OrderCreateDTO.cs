@@ -5,11 +5,9 @@ namespace Bookstore.Application.DTOs.OrderDTOs
 {
     public class OrderCreateDTO
     {
-        
         public int CustomerId { get; set; }
-        //public CustomerDTO? Customer { get; set; }
-        public DateTime Date { get; set; }
-        public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
+        public DateTime Date { get; set; } = DateTime.UtcNow;
+        public List<OrderDetailsCreateDTO> OrderDetails { get; set; } = new();
 
     }
 }

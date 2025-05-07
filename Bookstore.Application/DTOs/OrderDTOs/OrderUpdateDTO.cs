@@ -5,10 +5,10 @@ namespace Bookstore.Application.DTOs.OrderDTOs
 {
     public class OrderUpdateDTO
     {
+        public int Id { get; set; }
         public int CustomerId { get; set; }
         public CustomerDTO? Customer { get; set; }
         public DateTime Date { get; set; }
-        public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
-
+        public List<OrderDetailsCreateDTO> OrderDetails { get; set; } = new();
     }
 }

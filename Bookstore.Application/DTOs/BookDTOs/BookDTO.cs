@@ -8,11 +8,9 @@ namespace Bookstore.Application.DTOs.BookDTOs
         public int Id { get; set; }
         public required string Name { get; set; }
         public required string GenreName {  get; set; }
-        public required string AuthorName { get; set; }
+        public required string AuthorFullName { get; set; }
         public decimal Price { get; set; }
-        public List<StoreDTO> Store { get; set; } = new();
-        public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
-
+        public int Amount { get; set; }
+        //public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
     }
-
 }

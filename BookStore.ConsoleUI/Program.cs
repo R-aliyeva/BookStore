@@ -88,15 +88,22 @@ internal class Program
             Console.WriteLine("0. Geri Dön");
             Console.Write("Seçiminiz: ");
             string? choice = Console.ReadLine();
+            var bookMember = new BookMembers();
 
             switch (choice)
             {
-                case "1.1": BookMembers.AddBook(); break;
-                case "1.2": BookMembers.GetAllBooks(); break;
-                case "1.3": BookMembers.GetBook(); break;
-                case "1.4": BookMembers.UpdateBook(); break;
-                case "5": BookMembers.DeleteBook(); break;
-                case "0": return;
+                case "1.1": bookMember.AddBook();
+                    break;
+                case "1.2": bookMember.GetAllBooks();
+                    break;
+                case "1.3": bookMember.GetBook();
+                    break;
+                case "1.4": bookMember.UpdateBook();
+                    break;
+                case "5": bookMember.DeleteBook();
+                    break;
+                case "0":
+                    return;
                 default:
                     Console.WriteLine("Yanlış seçim!");
                     break;

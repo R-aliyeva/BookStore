@@ -7,9 +7,9 @@ using System.IO.Compression;
 
 namespace BookStore.ConsoleUI;
 
-internal static class BookMembers
+public class BookMembers
 {
-    public static void AddBook()
+    public void AddBook()
     {
         var storemanagment = new StoreManager();
         var bookmanager = new BookManager();
@@ -55,7 +55,7 @@ internal static class BookMembers
         
 
     }
-    public static void GetAllBooks()
+    public void GetAllBooks()
     {
         var bookmanager = new BookManager();
         var books = bookmanager.GetAll(include: x => x.Include(y => y.Author)
@@ -66,10 +66,10 @@ internal static class BookMembers
         Console.WriteLine(new string('-', 75));
         foreach (var item in books)
         {
-            Console.WriteLine($"{item.Id,-15}{item.Name,-25}{item.AuthorName,-15}{item.GenreName,-15}{item.Store.Sum(s=>s.Amount),-15}{item.Price}");
+            Console.WriteLine($"{item.Id,-15}{item.Name,-25}{item.AuthorFullName,-15}{item.GenreName,-15}{item.Amount,-15}{item.Price}");
         }
     }
-    public static void GetBook() 
+    public void GetBook() 
     {
         Console.Write("Kitabin adini daxil edin:");
         string input= Console.ReadLine();
@@ -81,12 +81,12 @@ internal static class BookMembers
             Console.WriteLine($"{("Id"),-15}{("Name"),-25}{("Author"),-15}{("Genre"),-15}{"Amount",-15}{("price")}");
             Console.WriteLine(new string('-', 75));
 
-            Console.WriteLine($"{result.Id,-15}{result.Name,-25}{result.AuthorName,-15}{result.GenreName,-15}{result.Store.Sum(s => s.Amount),-15}{result.Price}");
+            Console.WriteLine($"{result.Id,-15}{result.Name,-25}{result.AuthorFullName,-15}{result.GenreName,-15}{result.Amount,-15}{result.Price}");
         }
         else { Console.WriteLine("Axtarilan kitab tapilmadi"); }
 
     }
-    public static void UpdateBook() 
+    public void UpdateBook() 
     { 
     GetAllBooks();
         Console.Write("Duzelis olunacaq kitabin ID sini secin");
@@ -95,5 +95,5 @@ internal static class BookMembers
 
     
     }
-    public static void DeleteBook() { }
+    public void DeleteBook() { }
 }

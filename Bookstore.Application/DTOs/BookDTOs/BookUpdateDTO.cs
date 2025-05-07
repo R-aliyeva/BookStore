@@ -9,13 +9,11 @@ namespace Bookstore.Application.DTOs.BookDTOs
     {
         public required string Name { get; set; }
         public int GenreId { get; set; }
-        public GenreDTO? Genre { get; set; }
+        //public GenreDTO? Genre { get; set; }
         public int AuthorId { get; set; }
-        public AuthorDTO? Author { get; set; }
+        //public AuthorDTO? Author { get; set; }
         public decimal Price { get; set; }
-        public List<StoreDTO> Store { get; set; } = new();
+        public int StockCount { get; set; }
         public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
-
     }
-
 }

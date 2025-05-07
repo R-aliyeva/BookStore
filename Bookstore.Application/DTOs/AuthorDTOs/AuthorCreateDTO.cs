@@ -8,7 +8,5 @@
         public DateTime Birthdate { get; set; }
         public required string Birthplace { get; set; }
         public required string Nationality { get; set; }
-
-
     }
 }
