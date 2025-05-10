@@ -32,9 +32,10 @@ public class MappingProfile : Profile
         CreateMap<Genre, GenreUpdateDTO>().ReverseMap();
 
         CreateMap<OrderDetails, OrderDetailsCreateDTO>().ReverseMap();
-        CreateMap<OrderDetailsDTO, OrderDetails>().ReverseMap()
-            .ForMember(x=>x.BookName,opt=>opt.MapFrom(src=>(src.Book.Name)));
-
+        CreateMap<OrderDetailsDTO, OrderDetails>()
+            .ForPath(x => x.Book.Name, opt => opt.MapFrom(src => (src.BookName)))
+            //.ForMember(x => x.BookId, opt => opt.MapFrom(src => (src.Book.Id)))
+            .ReverseMap();
         CreateMap<Order, OrderDTO>().ReverseMap();
         CreateMap<Order, OrderCreateDTO>().ReverseMap();
       

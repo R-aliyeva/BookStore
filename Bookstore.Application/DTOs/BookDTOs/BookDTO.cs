@@ -1,4 +1,6 @@
-﻿namespace Bookstore.Application.DTOs.BookDTOs;
+﻿using Bookstore.Application.DTOs.OrderDetailsDTOs;
+
+namespace Bookstore.Application.DTOs.BookDTOs;
 
 public class BookDTO
 {
@@ -10,5 +12,5 @@ public class BookDTO
     public required string AuthorFullName { get; set; }
     public decimal Price { get; set; }
     public int Amount { get; set; }
-    //public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
+    public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
 }

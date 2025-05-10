@@ -64,18 +64,31 @@ public  class OrderMembers
     
     public  void Orderdetails() 
     {
-        var ordermanager = new OrderManager();
-        var orderdetailsmanager = new OrderDetailManager();
-        var result = orderdetailsmanager.GetAll(include: x => x.Include(y => y.Book)
-        .Include(z => z.Order));
-
-        Console.WriteLine($"{("Id"),-15}{("BookName"),-15}{("Orderstatus"),-15}{("Quantity"),-15}{"Price",-15}{"Total",-15}");
-        Console.WriteLine(new string('-', 95));
-        
-        foreach (var item in result)
+        try
         {
-            decimal total=item.Book.Price*item.Quantity;
-            Console.WriteLine($"{item.OrderID,-15}{item.BookName,-15}{item.OrderStatus,-15}{item.Quantity,-15}{item.Book.Price,-15}{total,-15}");
+            var orderDetailsManager = new OrderDetailManager();
+            var result = orderDetailsManager.GetAll(include: x => x.Include(z => z.Book).Include(t => t.Order));
+            if (result == null)
+            {
+                Console.WriteLine("sifaris yoxdur.");
+                return;
+            }
+
+            Console.WriteLine($"{("Id"),-15}{("Book Id"),-10}{("BookName"),-15}{("Orderstatus"),-15}{("Quantity"),-15}{"Price",-15}{"Total",-15}");
+            Console.WriteLine(new string('-', 95));
+
+            foreach (var item in result)
+            {
+                decimal total = item.Book.Price * item.Quantity;
+
+                Console.WriteLine($"{item.OrderID,-15}{item.Book.Id,-10}{item.BookName,-15}{item.OrderStatus,-15}{item.Quantity,-15}{item.Book.Price,-15}{total,-15}");
+            }
         }
+        catch (Exception ex)
+        {
+
+            Console.WriteLine(ex.Message);
+        }
+        
     }
 }
