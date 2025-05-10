@@ -1,9 +1,5 @@
 ﻿using BookStore.Domain.Entities;
-
-namespace BookStore.Domain.Interfaces
+namespace BookStore.Domain.Interfaces;
+public interface ICustomerRepository : IRepository<Customer>
 {
-    public interface ICustomerRepository : IRepository<Customer>
-    {
-    }
-
 }

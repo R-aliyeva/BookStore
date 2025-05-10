@@ -1,12 +1,11 @@
-﻿namespace Bookstore.Application.DTOs.AuthorDTOs
+﻿namespace Bookstore.Application.DTOs.AuthorDTOs;
+
+public class AuthorCreateDTO 
 {
-    public class AuthorCreateDTO 
-    {
-        
-        public required string Name { get; set; }
-        public required string SurName { get; set; }
-        public DateTime Birthdate { get; set; }
-        public required string Birthplace { get; set; }
-        public required string Nationality { get; set; }
-    }
+    
+    public required string Name { get; set; }
+    public required string SurName { get; set; }
+    public DateTime Birthdate { get; set; }
+    public required string Birthplace { get; set; }
+    public required string Nationality { get; set; }
 }

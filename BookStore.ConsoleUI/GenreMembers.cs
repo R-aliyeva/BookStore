@@ -1,35 +1,53 @@
 ﻿using Bookstore.Application.DTOs.GenreDTOs;
 using Bookstore.Application.Services;
+using Bookstore.Application.Validations.GenreValidators;
 
-namespace BookStore.ConsoleUI
+namespace BookStore.ConsoleUI;
+public  class GenreMembers
 {
-    internal static class GenreMembers
+    public void AddGenre()
     {
-
-
-        public static void AddGenre()
+        try
         {
-            var genremanager = new GenreManager();
+            var genreManager = new GenreManager();
+            var validator = new GenreValidator();
+
             Console.Write("Genre adını daxil edin:");
             var name = Console.ReadLine();
-            if (string.IsNullOrEmpty(name))
-            {
-                Console.WriteLine("Enter name");
-            }
-            Console.Write("Genre daxil edin:");
 
             var genrecreatedto = new GenreCreateDTO { Name = name };
+            var result = validator.Validate(genrecreatedto);
 
-            genremanager.Add(genrecreatedto);
-        }
-        public static void GetAllGenre()
-        {
-            var genremanager = new GenreManager();
-            var list = genremanager.GetAll();
-            foreach (var item in list)
+            if (!result.IsValid)
             {
-                Console.Write($"ID:{item.Id},Name:{item.Name}");
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
             }
+            else
+            {
+                genreManager.Add(genrecreatedto);
+            }
+        }
+        catch (Exception ex)
+        {
+
+            Console.WriteLine(ex.Message);
+        }
+        
+    }
+
+    public  void GetAllGenre()
+    {
+        var genremanager = new GenreManager();
+        var list = genremanager.GetAll();
+        Console.WriteLine($"{("Id"),-15}{("Name"),-25}");
+        Console.WriteLine(new string('-', 30));
+
+        foreach (var item in list)
+        {
+            Console.WriteLine($"{item.Id,-15}{item.Name,-25}");
         }
     }
 }

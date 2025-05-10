@@ -1,19 +1,17 @@
-﻿using Bookstore.Application.DTOs.AuthorDTOs;
-using Bookstore.Application.DTOs.GenreDTOs;
-using Bookstore.Application.DTOs.OrderDetailsDTOs;
-using Bookstore.Application.DTOs.StoreDTOs;
+﻿using Bookstore.Application.DTOs.OrderDetailsDTOs;
 
-namespace Bookstore.Application.DTOs.BookDTOs
+
+namespace Bookstore.Application.DTOs.BookDTOs;
+
+public class BookUpdateDTO
 {
-    public class BookUpdateDTO
-    {
-        public required string Name { get; set; }
-        public int GenreId { get; set; }
-        //public GenreDTO? Genre { get; set; }
-        public int AuthorId { get; set; }
-        //public AuthorDTO? Author { get; set; }
-        public decimal Price { get; set; }
-        public int StockCount { get; set; }
-        public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
-    }
+    public int Id { get; set; } 
+    public required string Name { get; set; }
+    public int GenreId { get; set; }
+    //public GenreDTO? Genre { get; set; }
+    public int AuthorId { get; set; }
+    //public AuthorDTO? Author { get; set; }
+    public decimal Price { get; set; }
+    public int Amount { get; set; }
+    public List<OrderDetailsDTO> OrderDetails { get; set; } = new();
 }

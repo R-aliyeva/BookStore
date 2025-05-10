@@ -1,13 +1,11 @@
-﻿using Bookstore.Application.DTOs.CustomerDTOs;
-using Bookstore.Application.DTOs.OrderDetailsDTOs;
+﻿using Bookstore.Application.DTOs.OrderDetailsDTOs;
 
-namespace Bookstore.Application.DTOs.OrderDTOs
+namespace Bookstore.Application.DTOs.OrderDTOs;
+
+public class OrderCreateDTO
 {
-    public class OrderCreateDTO
-    {
-        public int CustomerId { get; set; }
-        public DateTime Date { get; set; } = DateTime.UtcNow;
-        public List<OrderDetailsCreateDTO> OrderDetails { get; set; } = new();
+    public int CustomerId { get; set; }
+    public DateTime Date { get; set; } = DateTime.UtcNow;
+    public List<OrderDetailsCreateDTO> OrderDetails { get; set; } = new();
 
-    }
 }

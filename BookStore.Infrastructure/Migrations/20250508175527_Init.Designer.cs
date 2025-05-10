@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250505085957_Init")]
+    [Migration("20250508175527_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -64,6 +64,9 @@ namespace BookStore.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
@@ -177,27 +180,6 @@ namespace BookStore.Infrastructure.Migrations
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("BookStore.Domain.Entities.Store", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("Stores");
-                });
-
             modelBuilder.Entity("BookStore.Domain.Entities.Book", b =>
                 {
                     b.HasOne("BookStore.Domain.Entities.Author", "Author")
@@ -247,17 +229,6 @@ namespace BookStore.Infrastructure.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("BookStore.Domain.Entities.Store", b =>
-                {
-                    b.HasOne("BookStore.Domain.Entities.Book", "Book")
-                        .WithMany("Store")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-                });
-
             modelBuilder.Entity("BookStore.Domain.Entities.Author", b =>
                 {
                     b.Navigation("Books");
@@ -266,8 +237,6 @@ namespace BookStore.Infrastructure.Migrations
             modelBuilder.Entity("BookStore.Domain.Entities.Book", b =>
                 {
                     b.Navigation("OrderDetails");
-
-                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("BookStore.Domain.Entities.Genre", b =>

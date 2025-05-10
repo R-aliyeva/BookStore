@@ -1,9 +1,8 @@
 ﻿using Bookstore.Application.DTOs.OrderDTOs;
 using BookStore.Domain.Entities;
 
-namespace Bookstore.Application.Interfaces
+namespace Bookstore.Application.Interfaces;
+
+public interface IOrderService : ICrudService<Order, OrderDTO, OrderCreateDTO, OrderUpdateDTO>
 {
-    public interface IOrderService : ICrudService<Order, OrderDTO, OrderCreateDTO, OrderUpdateDTO>
-    {
-    }
 }

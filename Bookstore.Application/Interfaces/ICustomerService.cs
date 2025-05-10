@@ -2,9 +2,8 @@
 using BookStore.Domain.Entities;
 using BookStore.Infrastructure.EfCore.Repository;
 
-namespace Bookstore.Application.Interfaces
+namespace Bookstore.Application.Interfaces;
+
+public interface ICustomerService:ICrudService<Customer,CustomerDTO,CustomerCreateDTO,CustomerUpdateDTO>
 {
-    public interface ICustomerService:ICrudService<Customer,CustomerDTO,CustomerCreateDTO,CustomerUpdateDTO>
-    {
-    }
 }

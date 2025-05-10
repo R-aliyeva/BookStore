@@ -1,9 +1,6 @@
 ﻿using BookStore.Domain.Entities;
-
-namespace BookStore.Domain.Interfaces
+namespace BookStore.Domain.Interfaces;
+public interface IAuthorRepository:IRepository<Author>
 {
-    public interface IAuthorRepository:IRepository<Author>
-    {
-    }
-
 }
+

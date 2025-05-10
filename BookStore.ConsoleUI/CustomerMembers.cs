@@ -1,31 +1,62 @@
 ﻿using Bookstore.Application.DTOs.CustomerDTOs;
 using Bookstore.Application.Services;
+using Bookstore.Application.Validations.CustomerValidators;
 
-internal static class CustomerMembers
-{    public static void AddCustomer()
+public  class CustomerMembers
+{    public  void AddCustomer()
     {
-        var customermanager = new CustomerManager();
-        Console.Write("Müştəri adını daxil edin:");
-        var name = Console.ReadLine();
-        if (string.IsNullOrEmpty(name))
+        try
         {
-            Console.WriteLine("Enter name");
+            var validator = new CustomerVlaidator();
+            var customermanager = new CustomerManager();
+
+            Console.Write("Müştəri adını daxil edin:");
+            var name = Console.ReadLine();
+    
+            Console.Write("Müştəri adresini daxil edin:");
+            var address = Console.ReadLine();
+            
+
+            var createcustomer = new CustomerCreateDTO
+            {
+                Name = name,
+                Address = address
+
+            };
+            var result=validator.Validate(createcustomer);
+            if (!result.IsValid)
+            {
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
+            else
+            {
+                customermanager.Add(createcustomer);
+                Console.WriteLine($"{createcustomer.Name} adli musteri daxil edildi.");
+            }
+            
         }
-        Console.Write("Müştəri adresini daxil edin:");
-        var address = Console.ReadLine();
-        if (string.IsNullOrEmpty(address))
+        catch (Exception ex)
         {
-            Console.WriteLine("Enter Adress");
+
+            Console.WriteLine(ex.Message);
         }
-
-        var createcustomer = new CustomerCreateDTO
+       
+    }
+    public void GetAllCustomer()
+    { 
+    var customermanager=new CustomerManager();
+        var customerlist=customermanager.GetAll();
+        Console.WriteLine($"{("Id"),-15}{("Name"),-15}{("Address")}");
+        Console.WriteLine(new string('-', 35));
+        foreach (var customer in customerlist) 
         {
-            Name = name,
-            Address = address
-
-        };
-
-        customermanager.Add(createcustomer);
-
+            
+            Console.WriteLine($"{customer.Id,-15}{customer.Name,-15}{customer.Address}");
+        }
+    
+    
     }
 }
