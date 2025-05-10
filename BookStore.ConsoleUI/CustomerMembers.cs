@@ -21,7 +21,6 @@ public  class CustomerMembers
             {
                 Name = name,
                 Address = address
-
             };
             var result=validator.Validate(createcustomer);
             if (!result.IsValid)
@@ -40,7 +39,6 @@ public  class CustomerMembers
         }
         catch (Exception ex)
         {
-
             Console.WriteLine(ex.Message);
         }
        
@@ -52,11 +50,8 @@ public  class CustomerMembers
         Console.WriteLine($"{("Id"),-15}{("Name"),-15}{("Address")}");
         Console.WriteLine(new string('-', 35));
         foreach (var customer in customerlist) 
-        {
-            
+        {         
             Console.WriteLine($"{customer.Id,-15}{customer.Name,-15}{customer.Address}");
-        }
-    
-    
+        }    
     }
 }

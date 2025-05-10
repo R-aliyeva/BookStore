@@ -19,6 +19,13 @@ public class BookValidator : AbstractValidator<BookCreateDTO>
             .NotEmpty().WithMessage("Kitab qiyməti boş ola bilməz.")
             .GreaterThan(0)
             .WithMessage("Qiyməti 0-dan böyük olmalıdır.");
+
+        RuleFor(x => x.AuthorId)
+            .NotEmpty().WithMessage("Kitab muellifi boş ola bilməz.");
+
+        RuleFor(x => x.GenreId)
+          .NotEmpty().WithMessage("Kitab janri boş ola bilməz.");
+
     }
    
 }

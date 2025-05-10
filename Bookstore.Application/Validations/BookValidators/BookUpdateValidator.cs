@@ -8,7 +8,7 @@ public class BookUpdateValidator : AbstractValidator<BookUpdateDTO>
     public BookUpdateValidator()
     {
         RuleFor(book => book.Name)
-              .NotEmpty().WithMessage("Kitab adı boş ola bilməz.");
+          .NotEmpty().WithMessage("Kitab adı boş ola bilməz.");
 
         RuleFor(x => x.Amount)
             .NotEmpty().WithMessage("Kitab miqdarı boş ola bilməz.")
@@ -19,5 +19,11 @@ public class BookUpdateValidator : AbstractValidator<BookUpdateDTO>
             .NotEmpty().WithMessage("Kitab qiyməti boş ola bilməz.")
             .GreaterThan(0)
             .WithMessage("Qiyməti 0-dan böyük olmalıdır.");
+
+        RuleFor(x => x.AuthorId)
+            .NotEmpty().WithMessage("Kitab muellifi boş ola bilməz.");
+
+        RuleFor(x => x.GenreId)
+          .NotEmpty().WithMessage("Kitab janri boş ola bilməz.");
     }
 }

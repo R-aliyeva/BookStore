@@ -28,7 +28,7 @@ public  class OrderMembers
 
             Console.WriteLine("Kitabin sayını daxil edin:");
             var quantity = int.Parse(Console.ReadLine());
-            if (quantity < book.Amount && quantity>0)
+            if (quantity <= book.Amount && quantity>0)
             {
                 book.Amount -= quantity;
                 var updatedbook = new BookUpdateDTO
@@ -57,7 +57,6 @@ public  class OrderMembers
         }
         catch (Exception ex)
         {
-
             Console.WriteLine(ex.Message);
         }  
     }
@@ -67,7 +66,9 @@ public  class OrderMembers
         try
         {
             var orderDetailsManager = new OrderDetailManager();
-            var result = orderDetailsManager.GetAll(include: x => x.Include(z => z.Book).Include(t => t.Order));
+            var result = orderDetailsManager.GetAll(include: x => x.Include(z => z.Book)
+            .Include(t => t.Order));
+
             if (result == null)
             {
                 Console.WriteLine("sifaris yoxdur.");
@@ -80,15 +81,12 @@ public  class OrderMembers
             foreach (var item in result)
             {
                 decimal total = item.Book.Price * item.Quantity;
-
                 Console.WriteLine($"{item.OrderID,-15}{item.Book.Id,-10}{item.BookName,-15}{item.OrderStatus,-15}{item.Quantity,-15}{item.Book.Price,-15}{total,-15}");
             }
         }
         catch (Exception ex)
         {
-
             Console.WriteLine(ex.Message);
-        }
-        
+        }  
     }
 }

@@ -19,7 +19,6 @@ public class BookMembers
             Console.Write("Kitabin adını daxil edin:");
             string? name = Console.ReadLine();
 
-
             Console.WriteLine("Kitabin genreni  daxil edin:");
             genreMember.GetAllGenre();
             var genreid = int.Parse(Console.ReadLine());
@@ -36,7 +35,6 @@ public class BookMembers
 
                 if (decimal.TryParse(input, out price) && price > 0)
                     break;
-
                 Console.WriteLine("Zəhmət olmasa düzgün və 0-dan böyük ədəd daxil edin.");
             }
             int amount;
@@ -47,7 +45,6 @@ public class BookMembers
 
                 if (int.TryParse(inputamount, out amount) && amount > 0)
                     break;
-
                 Console.WriteLine("Zəhmət olmasa düzgün və 0-dan böyük ədəd daxil edin.");
             }
             var bookcreatedto = new BookCreateDTO
@@ -107,7 +104,6 @@ public class BookMembers
         }
         catch (Exception ex)
         {
-
             Console.WriteLine(ex.Message);
         }
     }
@@ -138,7 +134,6 @@ public class BookMembers
         }
         catch (Exception ex)
         {
-
             Console.WriteLine(ex.Message);
         }
     }
@@ -244,7 +239,6 @@ public class BookMembers
         }
         catch (Exception ex)
         {
-
             Console.WriteLine(ex.Message);
         }
 
@@ -278,6 +272,5 @@ public class BookMembers
         Console.WriteLine($"{book.Id} id-li və {book.Name} adında kitab silindi.");
 
         GetAllBooks();
-
     }
 }
