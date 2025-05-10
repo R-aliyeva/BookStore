@@ -44,14 +44,22 @@ public  class CustomerMembers
        
     }
     public void GetAllCustomer()
-    { 
-    var customermanager=new CustomerManager();
-        var customerlist=customermanager.GetAll();
-        Console.WriteLine($"{("Id"),-15}{("Name"),-15}{("Address")}");
-        Console.WriteLine(new string('-', 35));
-        foreach (var customer in customerlist) 
-        {         
-            Console.WriteLine($"{customer.Id,-15}{customer.Name,-15}{customer.Address}");
-        }    
+    {
+        try
+        {
+            var customermanager = new CustomerManager();
+            var customerlist = customermanager.GetAll();
+            Console.WriteLine($"{("Id"),-15}{("Name"),-15}{("Address")}");
+            Console.WriteLine(new string('-', 35));
+            foreach (var customer in customerlist)
+            {
+                Console.WriteLine($"{customer.Id,-15}{customer.Name,-15}{customer.Address}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    
     }
 }

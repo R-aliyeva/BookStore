@@ -39,14 +39,22 @@ public  class GenreMembers
 
     public  void GetAllGenre()
     {
-        var genremanager = new GenreManager();
-        var list = genremanager.GetAll();
-        Console.WriteLine($"{("Id"),-15}{("Name"),-25}");
-        Console.WriteLine(new string('-', 30));
-
-        foreach (var item in list)
+        try
         {
-            Console.WriteLine($"{item.Id,-15}{item.Name,-25}");
+            var genremanager = new GenreManager();
+            var list = genremanager.GetAll();
+            Console.WriteLine($"{("Id"),-15}{("Name"),-25}");
+            Console.WriteLine(new string('-', 30));
+
+            foreach (var item in list)
+            {
+                Console.WriteLine($"{item.Id,-15}{item.Name,-25}");
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
     }
 }

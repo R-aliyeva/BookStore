@@ -246,31 +246,39 @@ public class BookMembers
 
     public void DeleteBook()
     {
-        GetAllBooks();
-
-        var bookManager = new BookManager();
-        var orderDetailsManager = new OrderDetailManager();
-
-        Console.Write("Silinecek kitabin Id sini daxil edin: ");
-        var deletedId = int.Parse(Console.ReadLine());
-
-        var book = bookManager.Get(x => x.Id == deletedId, include: z => z.Include(t => t.OrderDetails));
-
-        if (book == null)
+        try
         {
-            Console.WriteLine("bu kitab mövcud deyil,silinə bilməz.");
-            return;
+            GetAllBooks();
+
+            var bookManager = new BookManager();
+            var orderDetailsManager = new OrderDetailManager();
+
+            Console.Write("Silinecek kitabin Id sini daxil edin: ");
+            var deletedId = int.Parse(Console.ReadLine());
+
+            var book = bookManager.Get(x => x.Id == deletedId, include: z => z.Include(t => t.OrderDetails));
+
+            if (book == null)
+            {
+                Console.WriteLine("bu kitab mövcud deyil,silinə bilməz.");
+                return;
+            }
+            var hasOrders = book.OrderDetails.Any();
+            if (hasOrders)
+            {
+                Console.WriteLine("Bu kitab üçün sifariş mövcuddur, silinə bilməz.");
+                return;
+            }
+
+            bookManager.Delete(deletedId);
+            Console.WriteLine($"{book.Id} id-li və {book.Name} adında kitab silindi.");
+
+            GetAllBooks();
         }
-        var hasOrders = book.OrderDetails.Any();
-        if (hasOrders)
+        catch (Exception ex)
         {
-            Console.WriteLine("Bu kitab üçün sifariş mövcuddur, silinə bilməz.");
-            return;
+            Console.WriteLine(ex.Message);
         }
-
-        bookManager.Delete(deletedId);
-        Console.WriteLine($"{book.Id} id-li və {book.Name} adında kitab silindi.");
-
-        GetAllBooks();
+        
     }
 }
